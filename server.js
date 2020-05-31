@@ -1,5 +1,7 @@
 'use strict';
 
+import './fonts/MontserratAlternates-Regular.ttf'
+
 const express = require('express');
 const { Server } = require('ws');
 
