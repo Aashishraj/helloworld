@@ -20,7 +20,285 @@
 
     <link rel="stylesheet" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-addons-4.19.0.min.css">
     <link rel="stylesheet" type="text/css" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/mdb-plugins-gathered.min.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF_8">
+    <title>WebSockets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.0/js/popper.min.js"></script>
+    <script type="text/javascript" src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.0/js/mdb.min.js"></script>
+    <script type="text/javascript" src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/plugins/mdb-plugins-gathered.min.js"></script>
+    <script type="text/javascript" src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/bundles/4.19.0/compiled-addons.min.js"></script>
+    
+    <!-- <link rel="canonical" href="https://mdbootstrap.com/snippets/jquery/temp/2149694/"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap">
+
+    <link rel="stylesheet" href="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.0/css/mdb.min.css">
+
+    <link rel="stylesheet" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-addons-4.19.0.min.css">
+    <link rel="stylesheet" type="text/css" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/mdb-plugins-gathered.min.css">
+
+    <style>
+    body {
+        background-image: url("https://mdbootstrap.com/wp-content/uploads/2019/02/back.jpg");
+        
+        background-position: center;
+        /* background-repeat: no-repeat; */
+        -webkit-background-size: cover;
+        background-size: cover;
+        
+        color: rgb(240,240,240);
+        font-family: "Montserrat Alternates Regular";
+        font-size: 20px;
+        word-wrap: break-word;
+         
+    }
+    
+
+    
+    
+
+
+    input { font-size: 20px; }
+
+  
+    
+    #log {
+        /* width: 300%; */
+    
+        margin: 0 auto;
+        padding: 10px auto;
+        /* border: 5px solid rgb(240,240,240); */
+        
+        border-radius: 7px;
+        
+    }
+
+        
+    li.hi{
+        z-index: 100;
+        display:inline-table;
+    }
+
+
+    li#li2 {
+        
+        width: 68%;
+    }
+
+    li#li1 {
+        width: 30%;
+        
+    }
+    
+
+    div#sendCtrls {
+    background-color: white;
+    width: 80%;
+    margin: 30px auto;
+    border-radius: 7px;
+    border: 3px solid rgb(40,40,40);
+}
+    #button1{
+        width:100%;
+        margin: auto;
+    }
+    
+    @media screen and (max-width:1100px){
+
+
+        body {
+        background-image: url("https://mdbootstrap.com/wp-content/uploads/2019/02/back.jpg");
+        background-position: center;
+        /* background-repeat: no-repeat; */
+        -webkit-background-size: cover;
+        background-size: cover;
+        /* background-color: rgb(1,15,22); */
+        color: rgb(240,240,240);
+        font-family: "Montserrat Alternates Regular";
+        font-size: 20px;
+        word-wrap: break-word;
+         
+    }
+    
+
+    
+    
+
+
+    input { font-size: 20px; }
+
+  
+    
+    #log {
+        /* width: 300%; */
+    
+        margin: 0 auto;
+        padding: 10px auto;
+        /* border: 5px solid rgb(240,240,240); */
+        
+        border-radius: 7px;
+        
+    }
+
+    
+        
+    
+
+
+    li#li2 {
+        
+        width: 100%;
+    }
+
+    li#li1 {
+        width: 100%;
+        
+    }
+    
+
+    div#sendCtrls {
+    background-color: white;
+    width: 80%;
+    margin: 30px auto;
+    border-radius: 7px;
+    border: 3px solid rgb(40,40,40);
+}
+    #button1{
+        width:100%;
+        margin: auto;
+    }
+
+        
+    }
+
+
+    </style>
+</head>
+<body>
+
+    <div id="same">
+        <li class="hi" id="li1">
+            <div id="online">
+                <div style="color: rgb(240,240,240); font-size: 22px; background-color: rgb(10,10,10); "><b>ONLINE</b></div>
+                
+                <div id="people" style='background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img (122).jpg");
+                background-position: center;
+                -webkit-background-size: cover;
+                background-size: cover;'></div>
+            </div>
+            <p><br></p>
+        </li>
+
+        <li class="hi" id="li2">
+           
+                    <!--  -->
+            <div id="log" style='background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img (122).jpg");
+            background-position: center;
+            -webkit-background-size: cover;
+            background-size: cover;'>
+                <div style="color: rgb(240,240,240); font-size: 20px; white-space: nowrap; background-color: rgb(10,10,10);"><b style="font-size: 22px;">CHAT ROOM</b></div>
+            
+            </div>
+        </li>
+
+    </div>
+
+    <div id="sendCtrls">
+            <!-- Material background input -->
+
+            <div class="md-form md-outline form-lg">
+                <input  id="text" class="form-control form-control-lg"  style="font-size: 18px; color:black;" type="text">
+                <label for="form-lg" id="label1" style="font-size: 15px;"></label>
+            </div>
+            <button type="button" class="btn btn-dark" id="button1" style="font-size: 18px;">Send</button>
+    </div>
+            <div id="check"></div>
+
+
+    <script>
+
+         //check.innerHTML += location.origin.replace(/^http/, 'ws');
+
+         
+        var input = document.getElementById("text");
+        input.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("button1").click();
+            }
+        });
+
+          var HOST = location.origin.replace(/^http/, 'ws');
+          var sock = new WebSocket(HOST);
+        
+
+        var name= prompt('Hey! What is your name' );
+        label1.innerHTML= name+" type here";
+        //var sock= new WebSocket("ws://localhost:5001");
+    
+        
+        
+        sock.onopen= function(event){
+
+            alert('socket connected');
+            sock.send(JSON.stringify({
+                type: "name",
+                data: name
+            }));
+            // setTimeout(function(){
+            //     sock.send("Hello iam aash ");
+            // },1000);
+        };
+
+        sock.onmessage= function(event){
+            console.log(event);
+            var json= JSON.parse(event.data);
+            if(json.type =="user") 
+            {      
+                var html ='';
+                people.innerHTML="";
+                for(i=0;i<json.user.length;i++){
+                    people.innerHTML += '<div style="color:rgb(240,240,240); style=" color:rgb(240,240,240) ;white-space: nowrap;">'+json.user[i]+'</div>';
+                }
+                // var d = new Date();
+                // check.innerHTML= json.user + d ;
+            }
+            else if(json.type=="msg"){
+                
+                // <li class="list-group-item" style="color:rgb(240,240,240); background-color: rgb(4,27,39);"><b>'+json.name+'</b>: '+json.data+"</li>";
+            
+                log.innerHTML += '<div style="color:rgb(240,240,240);"><b>  '+"&nbsp"+json.name+'</b>: '+json.data+"</div>";
+            }
+        }
+        document.querySelector('button').onclick= function(){
+            var text = document.getElementById('text').value;
+            document.getElementById('text').value='';
+            document.getElementById("text").focus();
+            // sock.send(text);
+
+            sock.send(JSON.stringify({
+                type: "message",
+                data: text
+            }))
+            
+            // '<li class="list-group-item" style="color:rgb(240,240,240); background-color: rgb(16,41,52); word-wrap: break-word;">'+'<b>You</b>: '+ text + "</li>";
+            
+            log.innerHTML+= '<div style="color:rgb(240,240,240); word-wrap: break-word;"> &nbsp'+'<b> You</b>: '+ text + "</li>";
+            // screen.width
+
+        };
+        
+       
+        
+    </script>
+</body>
+</html>
     <style>
     body {
         background-image: url("https://mdbootstrap.com/wp-content/uploads/2019/02/back.jpg");
