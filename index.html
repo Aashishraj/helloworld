@@ -30,8 +30,7 @@
     
     input { font-size: 28px; }
 
-   
-    
+  
     #online {
         /* width: 100%; */
         margin-left: 10px;
@@ -56,12 +55,12 @@
 
 
     li#li2 {
-        width: 68%;
+        width: 60%;
     }
 
     li#li1 {
         width: 30%;
-        margin-right: 10px;
+        margin-right: 1px;
     }
     
 
@@ -100,24 +99,29 @@
     <div id="sendCtrls">
             <!-- Material background input -->
         <div class="md-form md-bg">
-            <input type="text" id="text" class="form-control" style="font-size: 28px;><label for="formBg1" id="label1"></label>
+            <input type="text" id="text" class="form-control" style="font-size: 28px;"><label for="formBg1" id="label1"></label>
         </div>
         
     </div>
     
-    <button type="button" class="btn btn-dark" id="button1" style="font-size: 28px;>Send</button>
+    <button type="button" class="btn btn-dark" id="button1" style="font-size: 28px;">Send</button>
     <div id="check"></div>
+
+
     <script>
+
+         //check.innerHTML += location.origin.replace(/^http/, 'ws');
+
+          var HOST = location.origin.replace(/^http/, 'ws');
+          var sock = new WebSocket(HOST);
         
-        var HOST = location.origin.replace(/^http/, 'ws');
-        var sock = new WebSocket(HOST);
+
         var name= prompt('Hey! What is your name' );
         label1.innerHTML= name+" type here";
-//         var sock= new WebSocket("ws://hey-world.herokuapp.com/");
+        //var sock= new WebSocket("ws://localhost:5001");
     
         
-
-
+        
         sock.onopen= function(event){
 
             alert('socket connected');
