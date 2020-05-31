@@ -23,12 +23,12 @@
 
     <style>
     body {
-        background-image: url("https://mdbootstrap.com/wp-content/uploads/2019/02/back.jpg");
+        /* background-image: url("https://mdbootstrap.com/wp-content/uploads/2019/02/back.jpg");
         background-position: center;
-        /* background-repeat: no-repeat; */
+         background-repeat: no-repeat; 
         -webkit-background-size: cover;
-        background-size: cover;
-        
+        background-size: cover; */
+        background-color: rgb(20, 20, 20);
         color: rgb(240,240,240);
         font-family: "Montserrat Alternates Regular";
         font-size: 20px;
@@ -69,6 +69,7 @@
     }
 
     li#li1 {
+        margin-left: 10px;
         width: 30%;
         
     }
@@ -90,16 +91,12 @@
 
 
         body {
-        background-image: url("https://mdbootstrap.com/wp-content/uploads/2019/02/back.jpg");
-        background-position: center;
-        /* background-repeat: no-repeat; */
-        -webkit-background-size: cover;
-        background-size: cover;
-        /* background-color: rgb(1,15,22); */
+            background-color: rgb(20, 20, 20);
         color: rgb(240,240,240);
         font-family: "Montserrat Alternates Regular";
-        font-size: 18px;
+        font-size: 20px;
         word-wrap: break-word;
+         
          
     }
     
@@ -133,6 +130,7 @@
     }
 
     li#li1 {
+        margin-left: 0px;
         width: 100%;
         
     }
@@ -160,7 +158,7 @@
 
     <div id="same">
         <li class="hi" id="li1">
-            <div id="online">
+            <div id="online" style="border-radius: 7px;">
                 <div style="color: rgb(240,240,240); font-size: 20px; background-color: rgb(10,10,10);"><b>ONLINE</b></div>
                 
                 <div id="people"></div>
@@ -181,7 +179,7 @@
             <!-- Material background input -->
 
             <div class="md-form md-outline form-lg">
-                <input  id="text" class="form-control form-control-lg"  style="font-size: 18px; color:black;" type="text">
+                <input  id="text" class="form-control form-control-lg"  style="font-size: 18px; color:black;" type="text" autocomplete="off">
                 <label for="form-lg" id="label1" style="font-size: 15px;"></label>
             </div>
             <button type="button" class="btn btn-dark" id="button1" style="font-size: 18px;">Send</button>
@@ -232,14 +230,14 @@
                 var html ='';
                 people.innerHTML="";
                 for(i=0;i<json.user.length;i++){
-                    people.innerHTML += '<li class="list-group-item" style="background-color:rgb(20,43,53); color:rgb(240,240,240) ;white-space: nowrap;">'+json.user[i]+'</li>';
+                    people.innerHTML += '<li class="list-group-item" style="background-color:rgb(30,30,30); color:rgb(240,240,240) ;white-space: nowrap;">'+json.user[i]+'</li>';
                 }
                 // var d = new Date();
                 // check.innerHTML= json.user + d ;
             }
             else if(json.type=="msg"){
                 
-                log.innerHTML += '<li class="list-group-item" style="color:rgb(240,240,240); background-color: rgb(4,27,39);"><b>'+json.name+'</b>: '+json.data+"</li>";
+                log.innerHTML += '<li class="list-group-item" style="color:rgb(240,240,240); background-color: rgb(30,30,30);"><b>'+json.name+'</b>: '+json.data+"</li>";
             }
         }
         document.querySelector('button').onclick= function(){
@@ -254,7 +252,7 @@
             }))
             
             
-            log.innerHTML+= '<li class="list-group-item" style="color:rgb(240,240,240); background-color: rgb(16,41,52); word-wrap: break-word;">'+'<b>You</b>: '+ text + "</li>";
+            log.innerHTML+= '<li class="list-group-item" style="color:rgb(240,240,240); background-color: rgb(40,40,40); word-wrap: break-word;">'+'<b>You</b>: '+ text + "</li>";
             // screen.width
 
         };
