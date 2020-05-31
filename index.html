@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF_8">
+    <title>WebSockets</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.0/js/popper.min.js"></script>
+    <script type="text/javascript" src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.0/js/mdb.min.js"></script>
+    <script type="text/javascript" src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/plugins/mdb-plugins-gathered.min.js"></script>
+    <script type="text/javascript" src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/bundles/4.19.0/compiled-addons.min.js"></script>
+    
+    <!-- <link rel="canonical" href="https://mdbootstrap.com/snippets/jquery/temp/2149694/"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap">
+
+    <link rel="stylesheet" href="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.0/css/mdb.min.css">
+
+    <link rel="stylesheet" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-addons-4.19.0.min.css">
+    <link rel="stylesheet" type="text/css" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/mdb-plugins-gathered.min.css">
+
+    <style>
+    body {
+        background-color: rgb(40,40,40);
+        color: rgb(240,240,240);
+    }
+    
+    #online {
+        /* width: 100%; */
+        margin-left: 10px;
+        margin-bottom: 10px;
+       border: 5px solid rgb(240,240,240);
+    }
+    #log {
+        /* width: 300%; */
+    
+        margin: 0 auto;
+        padding: 10px auto;
+        border: 5px solid rgb(240,240,240);
+        border-radius: 7px;
+        
+    }
+
+        
+    li.hi{
+        
+        display:inline-table;
+    }
+
+
+    li#li2 {
+        width: 68%;
+    }
+
+    li#li1 {
+        width: 30%;
+        margin-right: 10px;
+    }
+    
+
+    div#sendCtrls {
+        width: 80%;
+        margin: 30px auto;
+        
+    }
+    #button1 {
+    margin: 0 auto;
+    margin-left: 45%;
+    }
+    #same{
+        margin: auto;
+    }
+    </style>
+</head>
+<body>
+
+    <div id="same">
+        <li class="hi" id="li1">
+            <div id="online">
+                <h1 style="color: rgb(240,240,240)">ONLINE</h1>
+                <div id="people"></div>
+            </div>
+        </li>
+
+        <li class="hi" id="li2">
+            <div id="log">
+                <h1 style="color: rgb(240,240,240)">CHAT ROOM</h1>
+            </div>
+        </li>
+
+    </div>
+
+    <div id="sendCtrls">
+            <!-- Material background input -->
+        <div class="md-form md-bg">
+            <input type="text" id="text" class="form-control"><label for="formBg1" id="label1"></label>
+        </div>
+        
+    </div>
+    
+    <button type="button" class="btn btn-dark" id="button1">Send</button>
+    <div id="check"></div>
+    <script>
+        var name= prompt('Hey! What is your name' );
+        label1.innerHTML= name+" type here";
+        var sock= new WebSocket("ws://localhost:5001");
+    
+        
+
+
+        sock.onopen= function(event){
+
+            alert('socket connected');
+            sock.send(JSON.stringify({
+                type: "name",
+                data: name
+            }));
+            // setTimeout(function(){
+            //     sock.send("Hello iam aash ");
+            // },1000);
+        };
+
+        sock.onmessage= function(event){
+            console.log(event);
+            var json= JSON.parse(event.data);
+            if(json.type =="user") 
+            {      
+                var html ='';
+                people.innerHTML="";
+                for(i=0;i<json.user.length;i++){
+                    people.innerHTML += '<li class="list-group-item" style="color:rgb(40,40,40);">'+json.user[i]+'</li>';
+                }
+                // var d = new Date();
+                // check.innerHTML= json.user + d ;
+            }
+            else if(json.type=="msg"){
+                
+                log.innerHTML += '<li class="list-group-item" style="color:rgb(240,240,240); background-color: rgb(80,80,80);">'+json.name+": "+json.data+"</li>";
+            }
+        }
+        document.querySelector('button').onclick= function(){
+            var text = document.getElementById('text').value;
+            // sock.send(text);
+
+            sock.send(JSON.stringify({
+                type: "message",
+                data: text
+            }))
+            log.innerHTML+= '<li class="list-group-item" style="color:rgb(240,240,240); background-color: rgb(80,80,80);">'+"You: "+ text + "</li>";
+        };
+        
+       
+        
+    </script>
+</body>
+</html>
