@@ -102,9 +102,12 @@
     <button type="button" class="btn btn-dark" id="button1">Send</button>
     <div id="check"></div>
     <script>
+        
+        var HOST = location.origin.replace(/^http/, 'ws');
+        var sock = new WebSocket(HOST);
         var name= prompt('Hey! What is your name' );
         label1.innerHTML= name+" type here";
-        var sock= new WebSocket("ws://hey-world.herokuapp.com/");
+//         var sock= new WebSocket("ws://hey-world.herokuapp.com/");
     
         
 
