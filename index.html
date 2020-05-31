@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF_8">
     <title>WebSockets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.19.0/js/popper.min.js"></script>
@@ -24,13 +25,13 @@
     body {
         background-image: url("https://mdbootstrap.com/wp-content/uploads/2019/02/back.jpg");
         background-position: center;
-        background-repeat: no-repeat;
+        /* background-repeat: no-repeat; */
         -webkit-background-size: cover;
         background-size: cover;
-        background-color: rgb(1,15,22);
+        
         color: rgb(240,240,240);
         font-family: "Montserrat Alternates Regular";
-        font-size: 50px;
+        font-size: 36px;
         word-wrap: break-word;
          
     }
@@ -40,21 +41,16 @@
     
 
 
-    input { font-size: 50px; }
+    input { font-size: 36px; }
 
   
-    #online {
-        /* width: 100%; */
-        /* margin-left: 10px; */
-        margin-bottom: 10px;
-       border: 5px solid rgb(240,240,240);
-    }
+    
     #log {
         /* width: 300%; */
     
         margin: 0 auto;
         padding: 10px auto;
-        border: 5px solid rgb(240,240,240);
+        /* border: 5px solid rgb(240,240,240); */
         
         border-radius: 7px;
         
@@ -62,7 +58,7 @@
 
         
     li.hi{
-        background-color: rgb(1,15,22);
+        z-index: 100;
         display:inline-table;
     }
 
@@ -74,7 +70,7 @@
 
     li#li1 {
         width: 30%;
-        margin-right: 1px;
+        
     }
     
 
@@ -90,6 +86,74 @@
         margin: auto;
     }
     
+    @media screen and (max-width:1100px){
+
+
+        body {
+        background-image: url("https://mdbootstrap.com/wp-content/uploads/2019/02/back.jpg");
+        background-position: center;
+        /* background-repeat: no-repeat; */
+        -webkit-background-size: cover;
+        background-size: cover;
+        /* background-color: rgb(1,15,22); */
+        color: rgb(240,240,240);
+        font-family: "Montserrat Alternates Regular";
+        font-size: 50px;
+        word-wrap: break-word;
+         
+    }
+    
+
+    
+    
+
+
+    input { font-size: 50px; }
+
+  
+    
+    #log {
+        /* width: 300%; */
+    
+        margin: 0 auto;
+        padding: 10px auto;
+        /* border: 5px solid rgb(240,240,240); */
+        
+        border-radius: 7px;
+        
+    }
+
+        
+    
+
+
+    li#li2 {
+        
+        width: 100%;
+    }
+
+    li#li1 {
+        width: 100%;
+        
+    }
+    
+
+    div#sendCtrls {
+    background-color: white;
+    width: 80%;
+    margin: 30px auto;
+    border-radius: 7px;
+    border: 3px solid rgb(40,40,40);
+}
+    #button1{
+        width:100%;
+        margin: auto;
+    }
+
+        
+    }
+
+
     </style>
 </head>
 <body>
@@ -97,14 +161,17 @@
     <div id="same">
         <li class="hi" id="li1">
             <div id="online">
-                <p style="color: rgb(240,240,240); font-size: 52px;"><b>ONLINE</b></p>
+                <div style="color: rgb(240,240,240); font-size: 50px; background-color: rgb(10,10,10);"><b>ONLINE</b></div>
+                
                 <div id="people"></div>
             </div>
+            <p><br></p>
         </li>
 
         <li class="hi" id="li2">
             <div id="log">
-                <p style="color: rgb(240,240,240); font-size: 52px;"><b>CHAT ROOM</b></p>
+                <div style="color: rgb(240,240,240); font-size: 50px; white-space: nowrap; background-color: rgb(10,10,10);"><b>CHAT ROOM</b></div>
+                
             </div>
         </li>
 
@@ -126,6 +193,8 @@
 
          //check.innerHTML += location.origin.replace(/^http/, 'ws');
 
+        
+
           var HOST = location.origin.replace(/^http/, 'ws');
           var sock = new WebSocket(HOST);
         
@@ -137,6 +206,8 @@
         
         
         sock.onopen= function(event){
+
+            alert('socket connected');
             sock.send(JSON.stringify({
                 type: "name",
                 data: name
@@ -154,7 +225,7 @@
                 var html ='';
                 people.innerHTML="";
                 for(i=0;i<json.user.length;i++){
-                    people.innerHTML += '<li class="list-group-item" style="color:rgb(40,40,40);white-space: nowrap;">'+json.user[i]+'</li>';
+                    people.innerHTML += '<li class="list-group-item" style="background-color:rgb(20,43,53); color:rgb(240,240,240) ;white-space: nowrap;">'+json.user[i]+'</li>';
                 }
                 // var d = new Date();
                 // check.innerHTML= json.user + d ;
