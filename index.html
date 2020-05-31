@@ -22,13 +22,17 @@
 
     <style>
     body {
-        background-color: rgb(40,40,40);
+        background-image: url("https://mdbootstrap.com/wp-content/uploads/2019/02/back.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-color: rgb(1,15,22);
         color: rgb(240,240,240);
         font-family: "Montserrat Alternates Regular";
-        font-size: 42px;
+        font-size: 50px;
         word-wrap: break-word;
-        
-        
+         
     }
     
 
@@ -36,7 +40,7 @@
     
 
 
-    input { font-size: 42px; }
+    input { font-size: 50px; }
 
   
     #online {
@@ -51,18 +55,20 @@
         margin: 0 auto;
         padding: 10px auto;
         border: 5px solid rgb(240,240,240);
+        
         border-radius: 7px;
         
     }
 
         
     li.hi{
-        
+        background-color: rgb(1,15,22);
         display:inline-table;
     }
 
 
     li#li2 {
+        
         width: 68%;
     }
 
@@ -73,12 +79,15 @@
     
 
     div#sendCtrls {
-        width: 80%;
-        margin: 30px auto;
-        
-    }
-    button{
+    background-color: white;
+    width: 80%;
+    margin: 30px auto;
+    border-radius: 7px;
+    border: 3px solid rgb(40,40,40);
+}
+    #button1{
         width:100%;
+        margin: auto;
     }
     
     </style>
@@ -88,14 +97,14 @@
     <div id="same">
         <li class="hi" id="li1">
             <div id="online">
-                <p style="color: rgb(240,240,240); font-size: 44px;">ONLINE</p>
+                <p style="color: rgb(240,240,240); font-size: 52px;"><b>ONLINE</b></p>
                 <div id="people"></div>
             </div>
         </li>
 
         <li class="hi" id="li2">
             <div id="log">
-                <p style="color: rgb(240,240,240); font-size: 44px;">CHAT ROOM</p>
+                <p style="color: rgb(240,240,240); font-size: 52px;"><b>CHAT ROOM</b></p>
             </div>
         </li>
 
@@ -103,15 +112,14 @@
 
     <div id="sendCtrls">
             <!-- Material background input -->
-        <div class="md-form md-bg">
-            <input type="text" id="text" class="form-control" style="font-size: 42px;"><label for="formBg1" id="label1" style="font-size: 20px;"></label>
-        </div>
-        
-   
-    
-    <button type="button" class="btn btn-dark" id="button1" style="font-size: 40px;">Send</button>
-</div>
-    <div id="check"></div>
+
+            <div class="md-form md-outline form-lg">
+                <input  id="text" class="form-control form-control-lg"  style="font-size: 50px; color:black;" type="text">
+                <label for="form-lg" id="label1" style="font-size: 20px;"></label>
+            </div>
+            <button type="button" class="btn btn-dark" id="button1" style="font-size: 36px;">Send</button>
+    </div>
+            <div id="check"></div>
 
 
     <script>
@@ -155,7 +163,7 @@
             }
             else if(json.type=="msg"){
                 
-                log.innerHTML += '<li class="list-group-item" style="color:rgb(240,240,240); background-color: rgb(80,80,80);"><b>'+json.name+'</b>: '+json.data+"</li>";
+                log.innerHTML += '<li class="list-group-item" style="color:rgb(240,240,240); background-color: rgb(4,27,39);"><b>'+json.name+'</b>: '+json.data+"</li>";
             }
         }
         document.querySelector('button').onclick= function(){
@@ -170,7 +178,7 @@
             }))
             
             
-            log.innerHTML+= '<li class="list-group-item" style="color:rgb(240,240,240); background-color: rgb(80,80,80); word-wrap: break-word;">'+'<b>You</b>: '+ text + "</li>";
+            log.innerHTML+= '<li class="list-group-item" style="color:rgb(240,240,240); background-color: rgb(16,41,52); word-wrap: break-word;">'+'<b>You</b>: '+ text + "</li>";
             // screen.width
 
         };
