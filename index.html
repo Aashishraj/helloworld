@@ -21,9 +21,6 @@
     <link rel="stylesheet" type="text/css" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/mdb-plugins-gathered.min.css">
 
     <style>
-        
-   
-        
     body {
         background-image: url("https://mdbootstrap.com/wp-content/uploads/2019/02/back.jpg");
         background-position: center;
@@ -140,8 +137,6 @@
         
         
         sock.onopen= function(event){
-
-            alert('socket connected');
             sock.send(JSON.stringify({
                 type: "name",
                 data: name
