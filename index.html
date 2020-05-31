@@ -31,7 +31,7 @@
         
         color: rgb(240,240,240);
         font-family: "Montserrat Alternates Regular";
-        font-size: 26px;
+        font-size: 20px;
         word-wrap: break-word;
          
     }
@@ -41,7 +41,7 @@
     
 
 
-    input { font-size: 26px; }
+    input { font-size: 20px; }
 
   
     
@@ -98,7 +98,7 @@
         /* background-color: rgb(1,15,22); */
         color: rgb(240,240,240);
         font-family: "Montserrat Alternates Regular";
-        font-size: 26px;
+        font-size: 18px;
         word-wrap: break-word;
          
     }
@@ -108,7 +108,7 @@
     
 
 
-    input { font-size: 26px; }
+    input { font-size: 20px; }
 
   
     
@@ -161,7 +161,7 @@
     <div id="same">
         <li class="hi" id="li1">
             <div id="online">
-                <div style="color: rgb(240,240,240); font-size: 30px; background-color: rgb(10,10,10);"><b>ONLINE</b></div>
+                <div style="color: rgb(240,240,240); font-size: 20px; background-color: rgb(10,10,10);"><b>ONLINE</b></div>
                 
                 <div id="people"></div>
             </div>
@@ -170,7 +170,7 @@
 
         <li class="hi" id="li2">
             <div id="log">
-                <div style="color: rgb(240,240,240); font-size: 30px; white-space: nowrap; background-color: rgb(10,10,10);"><b>CHAT ROOM</b></div>
+                <div style="color: rgb(240,240,240); font-size: 20px; white-space: nowrap; background-color: rgb(10,10,10);"><b>CHAT ROOM</b></div>
                 
             </div>
         </li>
@@ -181,10 +181,10 @@
             <!-- Material background input -->
 
             <div class="md-form md-outline form-lg">
-                <input  id="text" class="form-control form-control-lg"  style="font-size: 26px; color:black;" type="text">
-                <label for="form-lg" id="label1" style="font-size: 10px;"></label>
+                <input  id="text" class="form-control form-control-lg"  style="font-size: 18px; color:black;" type="text">
+                <label for="form-lg" id="label1" style="font-size: 15px;"></label>
             </div>
-            <button type="button" class="btn btn-dark" id="button1" style="font-size: 20px;">Send</button>
+            <button type="button" class="btn btn-dark" id="button1" style="font-size: 18px;">Send</button>
     </div>
             <div id="check"></div>
 
@@ -193,7 +193,14 @@
 
          //check.innerHTML += location.origin.replace(/^http/, 'ws');
 
-        
+         document.getElementById("text").focus();
+        var input = document.getElementById("text");
+        input.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("button1").click();
+            }
+        });
 
           var HOST = location.origin.replace(/^http/, 'ws');
           var sock = new WebSocket(HOST);
@@ -238,7 +245,7 @@
         document.querySelector('button').onclick= function(){
             var text = document.getElementById('text').value;
             document.getElementById('text').value='';
-            
+            document.getElementById("text").focus();
             // sock.send(text);
 
             sock.send(JSON.stringify({
